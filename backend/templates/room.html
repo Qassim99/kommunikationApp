@@ -1,0 +1,19 @@
+{% extends "base.html"%}
+
+{% block content %}
+    
+<h1>{{ group.name }}</h1>
+
+<div id="chat-history">
+    {% for message in messages %}
+        <p>{{ message.sender.username }}: {{ message.content }}</p>
+    {% endfor %}
+</div>
+
+<form method="post" action="">
+    {% csrf_token %}
+    <input type="text" name="message_content" required>
+    <input type="submit" value="Send">
+</form>
+<h2><a href="{% url 'group_detail' group.pk %}">group Detial</a></h2>
+{%endblock content%}

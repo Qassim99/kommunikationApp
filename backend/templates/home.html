@@ -1,0 +1,15 @@
+{% extends "base.html"%}
+
+{% block content %}
+<h1>Chat Room</h1>
+    {% for group in group_list %}
+    {% if user == group.admin or user in group.members.all %}
+    <div class = "post-entry">
+        <h1>{{group.name}}<h1>
+        <!-- <a href="{% url 'room' group.pk %}">normalChat</a> -->
+        <a href="{% url 'chatPage' group.pk %}">realtime</a>
+        
+    </div>
+    {% endif %}
+    {%endfor%}
+{%endblock content%}

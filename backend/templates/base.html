@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">Groups</a></h1>
+        <a href="{% url 'group_new' %}">New Group</a>
+    </header>
+    {% if user.is_authenticated %}
+    <p>Hi {{ user.username }}!</p>
+    <div>
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+    <a href="{% url 'logout' %}">Log Out</a>
+    {% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log In</a>
+    {% block login %}
+
+    {% endblock login %}
+    {% endif %}
+</body>
+</html>

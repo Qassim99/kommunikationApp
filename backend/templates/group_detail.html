@@ -1,0 +1,19 @@
+{% extends "base.html"%}
+
+{% block content %}
+    
+    <div class = "post-entry">
+        <h2>Title: {{ object.name }}</h2>
+        <h3>Admin: {{ object.admin.username }}</h3>
+        
+        <h3>Members:</h3>
+        <ul>
+            {% for member in object.members.all %}
+                <li>{{ member.username }}</li>
+            {% endfor %}
+        </ul> <hr>
+    </div>
+    <a href="{% url 'group_edit' group.pk %}"> group edit</a> <hr>
+    <a href="{% url 'group_delete' group.pk %}"> delete </a>
+    
+{%endblock content%}
